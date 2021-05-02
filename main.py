@@ -49,7 +49,27 @@ if __name__ == '__main__':
     data = data[data[DATE_TIME].dt.hour == hour]
 
     st.write(f'## Geo Data at {hour}h')
-    st.map(data)
+    midpoint = (np.average(data["lat"]), np.average(data["lon"]))
+    st.deck_gl_chart(
+        viewport={
+            "latitude": midpoint[0],
+            "longitude": midpoint[1],
+            "zoom": 11,
+            "pitch": 50,
+        },
+        layers=[
+            {
+                "type": "HexagonLayer",
+                "data": data,
+                "radius": 100,
+                "elevationScale": 4,
+                "elevationRange": [0, 1000],
+                "pickable": True,
+                "extruded": True,
+            }
+        ]
+    )
+    #st.map(data)
 
     st.write(f'## Raw Data at {hour}h')
     st.write(data)
