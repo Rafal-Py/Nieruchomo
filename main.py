@@ -45,7 +45,7 @@ if __name__ == '__main__':
         "http://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz"
     )
     data = load_data(100000)
-    hour = 11
+    hour = st.slider("Hours", 24, 0)
     data = data[data[DATE_TIME].dt.hour == hour]
 
     st.write(f'## Geo Data at {hour}h')
