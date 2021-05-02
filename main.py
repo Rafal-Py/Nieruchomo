@@ -9,6 +9,8 @@ import pandas as pd
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     st.write(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    x = st.slider("First squared slider")
+    st.write(x, 'squared is', x * x)
 
 
 # Press the green button in the gutter to run the script.
