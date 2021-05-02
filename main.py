@@ -47,6 +47,10 @@ if __name__ == '__main__':
     data = load_data(100000)
     hour = 11
     data = data[data[DATE_TIME].dt.hour == hour]
+
+    st.write(f'## Geo Data at {hour}h')
+    st.map(data)
+
     st.write(f'## Raw Data at {hour}h')
     st.write(data)
 
