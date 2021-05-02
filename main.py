@@ -77,7 +77,8 @@ if __name__ == '__main__':
     map(data, midpoint[0], midpoint[1], 11)
     # st.map(data)
 
-    st.write(f'## Raw Data at {hour}h')
-    st.write(data)
+    if st.checkbox("Show Raw Data"):
+        st.write(f'## Raw Data at {hour}h')
+        st.write(data)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
