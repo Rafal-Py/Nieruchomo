@@ -45,7 +45,9 @@ if __name__ == '__main__':
         "http://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz"
     )
     data = load_data(100000)
-    st.write('data')
+    hour = 11
+    data = data[data[DATE_TIME].dt.hour == hour]
+    st.write(f'## Raw Data at {hour}h')
     st.write(data)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
