@@ -37,7 +37,7 @@ if __name__ == '__main__':
     #print_hi('Streamlit')
 
     # SETTING PAGE CONFIG TO WIDE MODE
-    st.beta_set_page_config(layout="wide")
+    #st.beta_set_page_config(layout="wide")
 
     # LOADING DATA
     DATE_TIME = "date/time"
