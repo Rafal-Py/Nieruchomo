@@ -22,14 +22,6 @@ def print_hi(name):
     desired_label = st.selectbox("Filter to:", ["car", "truck"])
     st.write(data[data.label == desired_label])
 
-# SETTING PAGE CONFIG TO WIDE MODE
-st.beta_set_page_config(layout="wide")
-
-# LOADING DATA
-DATE_TIME = "date/time"
-DATA_URL = (
-    "http://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz"
-)
 
 @st.cache(persist=True)
 def load_data(nrows):
@@ -43,7 +35,17 @@ def load_data(nrows):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     #print_hi('Streamlit')
+
+    # SETTING PAGE CONFIG TO WIDE MODE
+    st.beta_set_page_config(layout="wide")
+
+    # LOADING DATA
+    DATE_TIME = "date/time"
+    DATA_URL = (
+        "http://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz"
+    )
     data = load_data(100000)
-    'data', data
+    st.write('data')
+    st.write(data)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
