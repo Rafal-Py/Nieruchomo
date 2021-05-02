@@ -32,12 +32,36 @@ def load_data(nrows):
     return data
 
 
+def map(data, lat, lon, zoom):
+    st.write(pdk.Deck(
+        map_style="mapbox://styles/mapbox/light-v9",
+        initial_view_state={
+            "latitude": lat,
+            "longitude": lon,
+            "zoom": zoom,
+            "pitch": 50,
+        },
+        layers=[
+            pdk.Layer(
+                "HexagonLayer",
+                data=data,
+                get_position=["lon", "lat"],
+                radius=100,
+                elevation_scale=4,
+                elevation_range=[0, 1000],
+                pickable=True,
+                extruded=True,
+            ),
+        ]
+    ))
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    #print_hi('Streamlit')
+    # print_hi('Streamlit')
 
     # SETTING PAGE CONFIG TO WIDE MODE
-    #st.beta_set_page_config(layout="wide")
+    # st.beta_set_page_config(layout="wide")
 
     # LOADING DATA
     DATE_TIME = "date/time"
@@ -50,26 +74,8 @@ if __name__ == '__main__':
 
     st.write(f'## Geo Data at {hour}h')
     midpoint = (np.average(data["lat"]), np.average(data["lon"]))
-    st.deck_gl_chart(
-        viewport={
-            "latitude": midpoint[0],
-            "longitude": midpoint[1],
-            "zoom": 11,
-            "pitch": 50,
-        },
-        layers=[
-            {
-                "type": "HexagonLayer",
-                "data": data,
-                "radius": 100,
-                "elevationScale": 4,
-                "elevationRange": [0, 1000],
-                "pickable": True,
-                "extruded": True,
-            }
-        ]
-    )
-    #st.map(data)
+    map(data, midpoint[0], midpoint[1], 11)
+    # st.map(data)
 
     st.write(f'## Raw Data at {hour}h')
     st.write(data)
